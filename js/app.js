@@ -42,8 +42,8 @@ const displayCard = [];
 cardDeck.forEach(function(card) {
   card.addEventListener('click', function(e) {
     
-    if(displayCard.length >= 2) {
-      card.classList.remove('open', 'show');
+    if(displayCard.length >= 2) { 
+      //hide
     }else {
       displayCard.push(card);
       card.classList.add('open', 'show');
