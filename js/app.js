@@ -1,7 +1,19 @@
 /*
  * Create a list that holds all of your cards
  */
+const cards = ['fa-diamond', 'fa-diamond',
+  'fa-paper-plane-o', 'fa-paper-plane-o',
+  'fa-anchor', 'fa-anchor',
+  'fa-bolt', 'fa-bolt',
+  'fa-cube', 'fa-cube',
+  'fa-leaf', 'fa-leaf',
+  'fa-bicycle', 'fa-bicycle',
+  'fa-bomb', 'fa-bomb'
+]
 
+function createCard(card) {
+  return `<li class="card" data-card="${card}"><i class="fa ${card}"></i></li>`; // template for how our <li> tags will be created.
+}
 
 /*
  * Display the cards on the page
@@ -36,17 +48,52 @@ function shuffle(array) {
  *    + increment the move counter and display it on the page (put this functionality in another function that you call from this one)
  *    + if all cards have matched, display a message with the final score (put this functionality in another function that you call from this one)
  */
+ function startGame() {
+   const deck = document.querySelector('.deck');
+   const cardHTML = shuffle(cards).map(function(card) {
+     return createCard(card);
+   });
+   
+   deck.innerHTML = cardHTML.join('');
+ }
+ 
+startGame();
+ 
 const cardDeck = document.querySelectorAll('.card');
-const displayCard = [];
+let displayCard = [];
 
 cardDeck.forEach(function(card) {
   card.addEventListener('click', function(e) {
     
-    if(displayCard.length >= 2) { 
-      //hide
-    }else {
+    if (!card.classList.contains('open') && !card.classList.contains('show')) {
       displayCard.push(card);
       card.classList.add('open', 'show');
-    }
+      console.log(displayCard);
+      
+      //if two cards don't match they go away.
+      if(displayCard.length === 2) {
+        //if cards do match then show them here
+        if(displayCard[0].dataset.card === displayCard[1].dataset.card) {
+          displayCard[0].classList.add('match');
+          displayCard[0].classList.add('open');
+          displayCard[0].classList.add('show');
+          
+          displayCard[1].classList.add('match');
+          displayCard[1].classList.add('open');
+          displayCard[1].classList.add('show');
+          
+          displayCard = [];
+        }else {
+          //if cards don't match hide cards
+          setTimeout (function() {
+            displayCard.forEach(function(card) {
+              card.classList.remove('open', 'show');
+            });
+            
+            displayCard = [];
+          }, 500);
+        }
+      }
+    } 
   });
 });
