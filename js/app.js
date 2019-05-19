@@ -48,8 +48,15 @@ function shuffle(array) {
  *    + increment the move counter and display it on the page (put this functionality in another function that you call from this one)
  *    + if all cards have matched, display a message with the final score (put this functionality in another function that you call from this one)
  */
+ const totalGameClock = document.querySelector('.time-counter');
+ console.log(totalGameClock);
+ let s = 0;
+ let m = 0;
+ let h = 0;
+ 
  function startGame() {
    const deck = document.querySelector('.deck');
+   
    const cardHTML = shuffle(cards).map(function(card) {
      return createCard(card);
    });
@@ -58,7 +65,27 @@ function shuffle(array) {
  }
  
 startGame();
- 
+
+// timer code reference: https://codepen.io/anon/pen/LojzVv?editors=0010 
+function gameClock() {
+  s++;
+  if(s >= 60) {
+    s = 0;
+    m++;
+    if (m >= 60) {
+      m = 0;
+      h++;
+    }
+  }
+  
+  totalGameClock.textContent = `${h > 9 ? h : "0" + h} : ${m > 9 ? m : "0" + m} : ${s > 9 ? s : "0" + s}`;
+  
+  setTimeout(gameClock, 1000);
+  console.log('YAY I WORK')
+}
+
+gameClock();
+
 const cardDeck = document.querySelectorAll('.card');
 let displayCard = [];
 
@@ -97,3 +124,8 @@ cardDeck.forEach(function(card) {
     } 
   });
 });
+
+const resetGame = document.querySelector('.restart');
+resetGame.addEventListener('click', function(card) {
+  console.log('it works');
+})
