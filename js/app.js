@@ -60,7 +60,7 @@ function shuffle(array) {
  
 startGame();
 
-// game timer code  reference: https://codepen.io/anon/pen/LojzVv?editors=0010 
+// game timer code reference: https://codepen.io/anon/pen/LojzVv?editors=0010 
 const totalGameClock = document.querySelector('.time-counter');
 let h = 0;
 let m = 0;
