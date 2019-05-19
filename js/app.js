@@ -47,13 +47,7 @@ function shuffle(array) {
  *    + if the cards do not match, remove the cards from the list and hide the card's symbol (put this functionality in another function that you call from this one)
  *    + increment the move counter and display it on the page (put this functionality in another function that you call from this one)
  *    + if all cards have matched, display a message with the final score (put this functionality in another function that you call from this one)
- */
- const totalGameClock = document.querySelector('.time-counter');
- console.log(totalGameClock);
- let s = 0;
- let m = 0;
- let h = 0;
- 
+ */ 
  function startGame() {
    const deck = document.querySelector('.deck');
    
@@ -66,7 +60,12 @@ function shuffle(array) {
  
 startGame();
 
-// timer code reference: https://codepen.io/anon/pen/LojzVv?editors=0010 
+// game timer code  reference: https://codepen.io/anon/pen/LojzVv?editors=0010 
+const totalGameClock = document.querySelector('.time-counter');
+let h = 0;
+let m = 0;
+let s = 0;
+
 function gameClock() {
   s++;
   if(s >= 60) {
@@ -81,7 +80,6 @@ function gameClock() {
   totalGameClock.textContent = `${h > 9 ? h : "0" + h} : ${m > 9 ? m : "0" + m} : ${s > 9 ? s : "0" + s}`;
   
   setTimeout(gameClock, 1000);
-  console.log('YAY I WORK')
 }
 
 gameClock();
