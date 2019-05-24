@@ -12,7 +12,7 @@ const cards = ['fa-diamond', 'fa-diamond',
 ]
 
 function createCard(card) {
-  return `<li class="card" data-card="${card}"><i class="fa ${card}"></i></li>`; // template for how our <li> tags will be created.
+  return `<li class="card" data-card="${card}"><i class="fa ${card}"></i></li>`; // template for how our <li> tags will be dynamically generated.
 }
 
 /*
@@ -60,11 +60,10 @@ function shuffle(array) {
  
 startGame();
 
+//how long the player takes to complete the game.
 // game timer code reference: https://codepen.io/anon/pen/LojzVv?editors=0010 
 const totalGameClock = document.querySelector('.time-counter');
-let h = 0;
-let m = 0;
-let s = 0;
+let h = 0, m = 0, s = 0;
 
 function gameClock() {
   s++;
@@ -82,13 +81,40 @@ function gameClock() {
   setTimeout(gameClock, 1000);
 }
 
-gameClock();
+gameClock(); // timer for how log the game is taking 
 
+// counting the number of moves a player makes 
+// move counter code reference: https://github.com/ryanwaite28/udacity-memory-game/blob/master/js/app.js
+const numMoves = document.querySelector('.moves');
+let moves = 0;
+
+function gameCounter() {
+  moves++;
+  numMoves.innerText = moves;
+}
+
+// star rating 
+// star rating code reference: https://codepen.io/anon/pen/LojzVv?editors=0010
+const ratingPanel = document.querySelector('.stars');
+
+function rating() {
+  if(moves === 16) {
+    ratingPanel.firstElementChild.outerHTML = " ";
+  } if(moves === 25) {
+    ratingPanel.firstElementChild.outerHTML = " ";
+  } if (moves > 35) {
+    ratingPanel.innerHTML = `<li><i>No Stars!!</i></li>`;
+  }
+}
+
+// Game logic for opening and matching cards
 const cardDeck = document.querySelectorAll('.card');
 let displayCard = [];
 
 cardDeck.forEach(function(card) {
   card.addEventListener('click', function(e) {
+    gameCounter(); // initiating the game counter
+    rating(); // star rating
     
     if (!card.classList.contains('open') && !card.classList.contains('show')) {
       displayCard.push(card);
@@ -116,12 +142,16 @@ cardDeck.forEach(function(card) {
             });
             
             displayCard = [];
-          }, 500);
+          }, 700);
         }
       }
     } 
   });
 });
+
+function congrats() {
+  //popup window when game is over !!
+}
 
 const resetGame = document.querySelector('.restart');
 resetGame.addEventListener('click', function(card) {
