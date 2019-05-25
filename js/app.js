@@ -107,6 +107,15 @@ function score() {
   }
 }
 
+// Congratulation message window when the game has ended
+// congrats window code reference: https://codepen.io/anon/pen/LojzVv?editors=0010
+function congrats() {
+  window.alert("congrats i pop up");
+}
+
+congrats();
+
+
 // Game logic for opening and matching cards
 const cardDeck = document.querySelectorAll('.card');
 let displayCard = [];
@@ -149,11 +158,6 @@ cardDeck.forEach(function(card) {
   });
 });
 
-function congrats(moves, score) {
-  //congrats message for when the game ends
+function resetGame() {
+  //resetGame
 }
-
-const resetGame = document.querySelector('.restart');
-resetGame.addEventListener('click', function(card) {
-  console.log('it works');
-})
