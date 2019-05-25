@@ -95,15 +95,15 @@ function gameCounter() {
 
 // star rating 
 // star rating code reference: https://codepen.io/anon/pen/LojzVv?editors=0010
-const ratingPanel = document.querySelector('.stars');
+const scoreBoard = document.querySelector('.stars');
 
-function rating() {
-  if(moves === 16) {
-    ratingPanel.firstElementChild.outerHTML = " ";
-  } if(moves === 25) {
-    ratingPanel.firstElementChild.outerHTML = " ";
-  } if (moves > 35) {
-    ratingPanel.innerHTML = `<li><i>No Stars!!</i></li>`;
+function score() {
+  if(moves === 20) {
+    scoreBoard.firstElementChild.outerHTML = " ";
+  } if(moves === 30) {
+    scoreBoard.firstElementChild.outerHTML = " ";
+  } if (moves > 40) {
+    scoreBoard.innerHTML = `<li><i>No Stars!!</i></li>`;
   }
 }
 
@@ -114,7 +114,7 @@ let displayCard = [];
 cardDeck.forEach(function(card) {
   card.addEventListener('click', function(e) {
     gameCounter(); // initiating the game counter
-    rating(); // star rating
+    score(); // initiating the star rating
     
     if (!card.classList.contains('open') && !card.classList.contains('show')) {
       displayCard.push(card);
@@ -149,8 +149,8 @@ cardDeck.forEach(function(card) {
   });
 });
 
-function congrats() {
-  //popup window when game is over !!
+function congrats(moves, score) {
+  //congrats message for when the game ends
 }
 
 const resetGame = document.querySelector('.restart');
