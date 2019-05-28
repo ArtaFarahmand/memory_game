@@ -15,6 +15,8 @@ function createCard(card) {
   return `<li class="card" data-card="${card}"><i class="fa ${card}"></i></li>`; // template for how our <li> tags will be dynamically generated.
 }
 
+let isGameOver = false;
+
 /*
  * Display the cards on the page
  *   - shuffle the list of cards using the provided "shuffle" method below
@@ -60,7 +62,7 @@ function shuffle(array) {
  
 startGame();
 
-//how long the player takes to complete the game.
+// Game Timer
 // game timer code reference: https://codepen.io/anon/pen/LojzVv?editors=0010 
 const totalGameClock = document.querySelector('.time-counter');
 let h = 0, m = 0, s = 0;
@@ -83,7 +85,7 @@ function gameClock() {
 
 gameClock(); // timer for how log the game is taking 
 
-// counting the number of moves a player makes 
+// Move Counter
 // move counter code reference: https://github.com/ryanwaite28/udacity-memory-game/blob/master/js/app.js
 const numMoves = document.querySelector('.moves');
 let moves = 0;
@@ -107,14 +109,16 @@ function score() {
   }
 }
 
+console.log(scoreBoard.length);
+
 // Congratulation message window when the game has ended
 // congrats window code reference: https://codepen.io/anon/pen/LojzVv?editors=0010
 function congrats() {
-  window.alert("congrats i pop up");
+  if(document.querySelectorAll('.match').length === 16) {
+    window.alert('CONGRATULATIONS.\n' + `You complete the game in: ${h > 9 ? h : "0" + h} : ${m > 9 ? m : "0" + m} : ${s > 9 ? s : "0" + s}` + ` with: ${moves} moves ` + 'and a star rating of: ' + scoreBoard.length + (scoreBoard.length === 1 ? " star" : " stars") + '\n Play again?');
+    gameClock = false; // stops game timer
+  }
 }
-
-congrats();
-
 
 // Game logic for opening and matching cards
 const cardDeck = document.querySelectorAll('.card');
@@ -143,6 +147,7 @@ cardDeck.forEach(function(card) {
           displayCard[1].classList.add('show');
           
           displayCard = [];
+          congrats();
         }else {
           //if cards don't match hide cards
           setTimeout (function() {
