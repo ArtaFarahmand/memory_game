@@ -15,8 +15,6 @@ function createCard(card) {
   return `<li class="card" data-card="${card}"><i class="fa ${card}"></i></li>`; // template for how our <li> tags will be dynamically generated.
 }
 
-let isGameOver = false;
-
 /*
  * Display the cards on the page
  *   - shuffle the list of cards using the provided "shuffle" method below
@@ -62,6 +60,13 @@ function shuffle(array) {
  
 startGame();
 
+function resetCards() {
+  const cards = document.querySelectorAll('.deck li');
+  for(let card of cards) {
+    card.className = 'card';
+  }
+}
+
 // Game Timer
 // game timer code reference: https://codepen.io/anon/pen/LojzVv?editors=0010 
 const totalGameClock = document.querySelector('.time-counter');
@@ -105,7 +110,7 @@ function score() {
   } if(moves === 30) {
     scoreBoard.firstElementChild.outerHTML = " ";
   } if (moves > 40) {
-    scoreBoard.innerHTML = `<li><i>No Stars!!</i></li>`;
+    scoreBoard.innerHTML = `<li><i>No Stars</i></li>`;
   }
 }
 
@@ -120,6 +125,35 @@ function congrats() {
   }
 }
 
+// reset memory game:
+// reset code reference: https://matthewcranford.com/memory-game-walkthrough-part-8-putting-it-all-together/
+const restartGame = document.querySelector('.fa-repeat');
+console.log(restartGame)
+
+function resetGame() {
+  restartGame.addEventListener('click', function() {
+    //reset the Timer
+    h = 0;
+    m = 0;
+    s = 0;
+    
+    document.querySelector('.time-counter').textContent = `${h > 9 ? h : "0" + h} : ${m > 9 ? m : "0" + m} : ${s > 9 ? s : "0" + s}`;
+    
+    //reset the star rating
+    document.querySelector('.stars').innerHTML = `<li><i class="fa fa-star"></i></li>` + `<li><i class="fa fa-star"></i></li>` + `<li><i class="fa fa-star"></i></li>`;
+    
+    // reset the move counter
+    moves = 0;
+    document.querySelector('.moves').innerHTML = moves;
+    
+    // shuffle cards
+    createCard(); 
+    resetCards();
+  });
+}
+
+resetGame();
+  
 // Game logic for opening and matching cards
 const cardDeck = document.querySelectorAll('.card');
 let displayCard = [];
@@ -147,7 +181,7 @@ cardDeck.forEach(function(card) {
           displayCard[1].classList.add('show');
           
           displayCard = [];
-          congrats();
+          congrats(); // end of game Congratulation message and player performance.
         }else {
           //if cards don't match hide cards
           setTimeout (function() {
@@ -159,10 +193,8 @@ cardDeck.forEach(function(card) {
           }, 700);
         }
       }
-    } 
+    }
   });
 });
 
-function resetGame() {
-  //resetGame
-}
+
