@@ -9,7 +9,7 @@ const cards = ['fa-diamond', 'fa-diamond',
   'fa-leaf', 'fa-leaf',
   'fa-bicycle', 'fa-bicycle',
   'fa-bomb', 'fa-bomb'
-]
+];
 
 function createCard(card) {
   return `<li class="card" data-card="${card}"><i class="fa ${card}"></i></li>`; // template for how our <li> tags will be dynamically generated.
@@ -56,14 +56,18 @@ function shuffle(array) {
    });
    
    deck.innerHTML = cardHTML.join('');
+   console.log('this is firing');
  }
  
 startGame();
 
+// reset Cards
+// reset cards code reference:https://matthewcranford.com/memory-game-walkthrough-part-8-putting-it-all-together/
 function resetCards() {
   const cards = document.querySelectorAll('.deck li');
   for(let card of cards) {
     card.className = 'card';
+    console.log('this is firing');
   }
 }
 
@@ -121,7 +125,7 @@ console.log(scoreBoard.length);
 function congrats() {
   if(document.querySelectorAll('.match').length === 16) {
     window.alert('CONGRATULATIONS.\n' + `You complete the game in: ${h > 9 ? h : "0" + h} : ${m > 9 ? m : "0" + m} : ${s > 9 ? s : "0" + s}` + ` with: ${moves} moves ` + 'and a star rating of: ' + scoreBoard.length + (scoreBoard.length === 1 ? " star" : " stars") + '\n Play again?');
-    gameClock = false; // stops game timer
+    resetGame();
   }
 }
 
@@ -131,28 +135,26 @@ const restartGame = document.querySelector('.fa-repeat');
 console.log(restartGame)
 
 function resetGame() {
-  restartGame.addEventListener('click', function() {
-    //reset the Timer
-    h = 0;
-    m = 0;
-    s = 0;
-    
-    document.querySelector('.time-counter').textContent = `${h > 9 ? h : "0" + h} : ${m > 9 ? m : "0" + m} : ${s > 9 ? s : "0" + s}`;
-    
-    //reset the star rating
-    document.querySelector('.stars').innerHTML = `<li><i class="fa fa-star"></i></li>` + `<li><i class="fa fa-star"></i></li>` + `<li><i class="fa fa-star"></i></li>`;
-    
-    // reset the move counter
-    moves = 0;
-    document.querySelector('.moves').innerHTML = moves;
-    
-    // shuffle cards
-    createCard(); 
-    resetCards();
-  });
+  //reset the Timer
+  h = 0;
+  m = 0;
+  s = 0;
+  
+  document.querySelector('.time-counter').textContent = `${h > 9 ? h : "0" + h} : ${m > 9 ? m : "0" + m} : ${s > 9 ? s : "0" + s}`;
+  
+  //reset the star rating
+  document.querySelector('.stars').innerHTML = `<li><i class="fa fa-star"></i></li>` + `<li><i class="fa fa-star"></i></li>` + `<li><i class="fa fa-star"></i></li>`;
+  
+  // reset the move counter
+  moves = 0;
+  document.querySelector('.moves').innerHTML = moves;
+  
+  // reset deck and create new cards
+  createCard();
+  
 }
 
-resetGame();
+document.querySelector('.restart').addEventListener('click', resetGame)
   
 // Game logic for opening and matching cards
 const cardDeck = document.querySelectorAll('.card');
