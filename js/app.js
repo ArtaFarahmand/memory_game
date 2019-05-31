@@ -56,7 +56,6 @@ function shuffle(array) {
    });
    
    deck.innerHTML = cardHTML.join('');
-   console.log('this is firing');
  }
  
 startGame();
