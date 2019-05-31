@@ -65,6 +65,7 @@ startGame();
 // reset cards code reference:https://matthewcranford.com/memory-game-walkthrough-part-8-putting-it-all-together/
 function resetCards() {
   const deck = document.querySelector('.deck');
+  
   const cards = shuffle(Array.from(document.querySelectorAll('.deck li')));
   for(let card of cards) {
     deck.appendChild(card);
@@ -73,6 +74,7 @@ function resetCards() {
 }
 
 function clearCards(card) {
+  //this is not working right now GRRRR!!!
   const cardDeck = document.querySelectorAll('.card');
   
   setTimeout(() => {
