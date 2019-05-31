@@ -200,5 +200,3 @@ cardDeck.forEach(function(card) {
     }
   });
 });
-
-
