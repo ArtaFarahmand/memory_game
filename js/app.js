@@ -48,9 +48,9 @@ function shuffle(array) {
  *    + increment the move counter and display it on the page (put this functionality in another function that you call from this one)
  *    + if all cards have matched, display a message with the final score (put this functionality in another function that you call from this one)
  */ 
+ const deck = document.querySelector('.deck');
+ 
  function startGame() {
-   const deck = document.querySelector('.deck');
-   
    const cardHTML = shuffle(cards).map(function(card) {
      return createCard(card);
    });
@@ -64,11 +64,21 @@ startGame();
 // reset Cards
 // reset cards code reference:https://matthewcranford.com/memory-game-walkthrough-part-8-putting-it-all-together/
 function resetCards() {
-  const cards = document.querySelectorAll('.deck li');
+  const deck = document.querySelector('.deck');
+  const cards = shuffle(Array.from(document.querySelectorAll('.deck li')));
   for(let card of cards) {
-    card.className = 'card';
+    deck.appendChild(card);
     console.log('this is firing');
   }
+}
+
+function clearCards(card) {
+  const cardDeck = document.querySelectorAll('.card');
+  
+  setTimeout(() => {
+    card.classList.remove('open', 'show');
+  }, 200);
+  console.log('works');
 }
 
 // Game Timer
@@ -132,7 +142,6 @@ function congrats() {
 // reset memory game:
 // reset code reference: https://matthewcranford.com/memory-game-walkthrough-part-8-putting-it-all-together/
 const restartGame = document.querySelector('.fa-repeat');
-console.log(restartGame)
 
 function resetGame() {
   //reset the Timer
@@ -150,7 +159,8 @@ function resetGame() {
   document.querySelector('.moves').innerHTML = moves;
   
   // reset deck and create new cards
-  createCard();
+  //clearCards()
+  resetCards();
   
 }
 
