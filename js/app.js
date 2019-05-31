@@ -67,6 +67,7 @@ function resetCards() {
   const deck = document.querySelector('.deck');
   
   const cards = shuffle(Array.from(document.querySelectorAll('.deck li')));
+  deck.innerHTML = '';
   for(let card of cards) {
     deck.appendChild(card);
     card.classList.remove('open', 'show', 'match');
