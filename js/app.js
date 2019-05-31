@@ -70,7 +70,6 @@ function resetCards() {
   for(let card of cards) {
     deck.appendChild(card);
     card.classList.remove('open', 'show', 'match');
-    console.log('this is firing');
   }
 }
 
