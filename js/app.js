@@ -127,6 +127,7 @@ console.log(scoreBoard.length);
 function congrats() {
   if(document.querySelectorAll('.match').length === 16) {
     window.alert('CONGRATULATIONS.\n' + `You complete the game in: ${h > 9 ? h : "0" + h} : ${m > 9 ? m : "0" + m} : ${s > 9 ? s : "0" + s}` + ` with: ${moves} moves ` + 'and a star rating of: ' + scoreBoard.length + (scoreBoard.length === 1 ? " star" : " stars") + '\n Play again?');
+    gameClock=false;
     resetGame();
   }
 }
