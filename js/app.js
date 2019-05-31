@@ -69,18 +69,9 @@ function resetCards() {
   const cards = shuffle(Array.from(document.querySelectorAll('.deck li')));
   for(let card of cards) {
     deck.appendChild(card);
+    card.classList.remove('open', 'show', 'match');
     console.log('this is firing');
   }
-}
-
-function clearCards(card) {
-  //this is not working right now GRRRR!!!
-  const cardDeck = document.querySelectorAll('.card');
-  
-  setTimeout(() => {
-    card.classList.remove('open', 'show');
-  }, 200);
-  console.log('works');
 }
 
 // Game Timer
