@@ -109,6 +109,7 @@ function gameCounter() {
 // star rating 
 // star rating code reference: https://codepen.io/anon/pen/LojzVv?editors=0010
 const scoreBoard = document.querySelector('.stars');
+const playerRating = document.getElementsByClassName('fa-star'), stars = " ";
 
 function score() {
   if(moves === 20) {
@@ -120,13 +121,11 @@ function score() {
   }
 }
 
-console.log(scoreBoard.length);
-
 // Congratulation message window when the game has ended
 // congrats window code reference: https://codepen.io/anon/pen/LojzVv?editors=0010
 function congrats() {
   if(document.querySelectorAll('.match').length === 16) {
-    window.alert('CONGRATULATIONS.\n' + `You complete the game in: ${h > 9 ? h : "0" + h} : ${m > 9 ? m : "0" + m} : ${s > 9 ? s : "0" + s}` + ` with: ${moves} moves ` + 'and a star rating of: ' + scoreBoard.length + (scoreBoard.length === 1 ? " star" : " stars") + '\n Play again?');
+    window.alert('CONGRATULATIONS\n' + `You complete the game in: ${h > 9 ? h : "0" + h} : ${m > 9 ? m : "0" + m} : ${s > 9 ? s : "0" + s}` + ` with: ${moves} moves ` + 'and a star rating of: ' + playerRating.length + (playerRating.length === 1 ? " star" : " stars") + '\n Play again?');
     gameClock=false;
     resetGame();
   }
