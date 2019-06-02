@@ -39,11 +39,11 @@ This project has the following assets:
 
 ## Credits
 
-Shuffle function: [stackoverflow](http://stackoverflow.com/a/2450976 )
-Game timer & star function: [codepen](https://codepen.io/anon/pen/LojzVv?editors=0010)
-Move Counter: [ryanwaite28](https://github.com/ryanwaite28/udacity-memory-game/blob/master/js/app.js "")
-Reset Function: [matthewcranford](https://matthewcranford.com/memory-game-walkthrough-part-8-putting-it-all-together/)
-Thank you to [mikewales](https://www.youtube.com/watch?time_continue=935&v=x47oLiTpIVk) for the webinar on the game logic
+* Shuffle function: [stackoverflow](http://stackoverflow.com/a/2450976 )
+* Game timer & star function: [codepen](https://codepen.io/anon/pen/LojzVv?editors=0010)
+* Move Counter: [ryanwaite28](https://github.com/ryanwaite28/udacity-memory-game/blob/master/js/app.js "")
+* Reset Function: [matthewcranford](https://matthewcranford.com/memory-game-walkthrough-part-8-putting-it-all-together/)
+* Thank you to [mikewales](https://www.youtube.com/watch?time_continue=935&v=x47oLiTpIVk) for the webinar on the game logic
 
 
 ## Contributing
