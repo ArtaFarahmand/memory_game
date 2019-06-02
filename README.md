@@ -9,7 +9,7 @@ Udacity Front - End Developer Nanodegree second project. The memory game is a br
 * [Technical](#technical)
 * [Credits](#credits)
 * [Contributing](#contributing)
-* [tools used](#tools used)
+* [toolsused](#toolsused)
 
 ## Instructions
 
