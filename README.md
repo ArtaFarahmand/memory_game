@@ -13,7 +13,7 @@ Udacity Front - End Developer Nano-degree second project. The memory game is a b
 
 ## Instructions
 
-The board for this game consists of 16 card arranged in a grid. The deck is made of 8 pairs of cards, each with a different symbol on one side. The card are randomized on the grid facedown. To play the game the player must flip each card to find and match the pairs.
+The board for this game consists of 16 card arranged in a grid. The deck is made of 8 pairs of cards, each with a different symbol on one side. The cards are randomized on the grid facedown. To play the game the player must flip each card to find and match the pairs.
 
 With Each turn:
 * Turn a card to reveal the symbol
@@ -33,16 +33,16 @@ Recommended browsers include:
 ## Technical 
 
 This project has the following assets:
-* index.html - this contains the games main HTML architecture.
+* index.html - this contains the game's main HTML architecture.
 * app.css - this holds all of the styling elements for the game
 * app.js - contains the games actions and logic
 
 ## Credits
 
 * Shuffle function: [stackoverflow](http://stackoverflow.com/a/2450976 )
-* Game timer & star function reference: [codepen](https://codepen.io/anon/pen/LojzVv?editors=0010)
-* Move Counter reference: [ryanwaite28](https://github.com/ryanwaite28/udacity-memory-game/blob/master/js/app.js "")
-* Reset Function reference: [matthewcranford](https://matthewcranford.com/memory-game-walkthrough-part-8-putting-it-all-together/)
+* Game timer & star function code reference: [codepen](https://codepen.io/anon/pen/LojzVv?editors=0010)
+* Move Counter code reference: [ryanwaite28](https://github.com/ryanwaite28/udacity-memory-game/blob/master/js/app.js "")
+* Reset Function code reference: [matthewcranford](https://matthewcranford.com/memory-game-walkthrough-part-8-putting-it-all-together/)
 * Thank you to [mikewales](https://www.youtube.com/watch?time_continue=935&v=x47oLiTpIVk) for the webinar on the game logic
 
 
