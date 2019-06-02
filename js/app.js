@@ -213,7 +213,7 @@ cardDeck.forEach(function(card) {
 // congrats window code reference: https://codepen.io/anon/pen/LojzVv?editors=0010
 function congrats() {
   if(document.querySelectorAll('.match').length === 16) {
-    window.alert('CONGRATULATIONS\n' + `You completed the game in: ${h > 9 ? h : "0" + h} : ${m > 9 ? m : "0" + m} : ${s > 9 ? s : "0" + s}` + ` with: ${moves} moves ` + 'and a star rating of: ' + playerRating.length + (playerRating.length === 1 ? " star" : " stars") + '\n Play again?');
+    window.alert('CONGRATULATIONS\n' + `You completed the game in: ${hour > 9 ? hour : "0" + hour} : ${minute > 9 ? minute : "0" + minute} : ${second > 9 ? second : "0" + second}` + ` with: ${moves} moves ` + 'and a star rating of: ' + playerRating.length + (playerRating.length === 1 ? " star" : " stars") + '\n Play again?');
     resetGame();
   }
 }
