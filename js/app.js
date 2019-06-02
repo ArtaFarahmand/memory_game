@@ -80,7 +80,6 @@ function shuffle(array) {
    }, 1000);
  }
  
- 
  /* ---------- MOVE COUNTER ---------- */
  // Move counter code reference: https://github.com/ryanwaite28/udacity-memory-game/blob/master/js/app.js
  const numMoves = document.querySelector('.moves');
