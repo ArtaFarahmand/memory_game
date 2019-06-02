@@ -64,22 +64,18 @@ function shuffle(array) {
 
  function gameClock() {
    let stopWatch = setInterval(() => {
-     second ++;
-     
-     if(second >= 60) {
-       second = 0;
-       minute++;
-       if (second >= 60) {
-         minute = 0;
-         hour++;
-       }
-     }
-     
-     totalGameClock.textContent = `${hour > 9 ? hour : "0" + hour} : ${minute > 9 ? minute : "0" + minute} : ${second > 9 ? second : "0" + second}`;
+     second++;
      console.log(second);
    }, 1000);
+   
+   if(second >= 60) {
+     minute++;
+   }if(minute >= 60) {
+     hours++
+   }
+   
+    totalGameClock.textContent = `${hour > 9 ? hour : "0" + hour} : ${minute > 9 ? minute : "0" + minute} : ${second > 9 ? second : "0" + second}`; 
  }
- 
  
  /* ---------- MOVE COUNTER ---------- */
  // Move counter code reference: https://github.com/ryanwaite28/udacity-memory-game/blob/master/js/app.js
@@ -131,14 +127,14 @@ function resetCards() {
 }
 
 /* ---------- RESET TIMER ---------- */
-function resetTimer() {
+/*function resetTimer() {
   //reset the Timer
-  hour = 0;
-  minute = 0;
-  second = 0;
+  h = 0;
+  m = 0;
+  s = 0;
   
-  document.querySelector('.time-counter').textContent = `${hour > 9 ? hour : "0" + hour} : ${minute > 9 ? minute : "0" + minute} : ${second > 9 ? second : "0" + second}`;
-}
+  document.querySelector('.time-counter').textContent = `${h > 9 ? h : "0" + h} : ${m > 9 ? m : "0" + m} : ${s > 9 ? s : "0" + s}`;
+}*/
 
 /* ---------- RESET STAR RATING ---------- */
 function resetStars() {
@@ -156,7 +152,7 @@ function resetMoves() {
 /* ---------- CALL ALL RESET FUNCTIONS ---------- */
 function resetGame() {
   // Calls all reset functions
-  resetTimer();
+  //resetTimer();
   resetStars();
   resetMoves();
   resetCards();

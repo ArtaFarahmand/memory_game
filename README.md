@@ -40,9 +40,9 @@ This project has the following assets:
 ## Credits
 
 * Shuffle function: [stackoverflow](http://stackoverflow.com/a/2450976 )
-* Game timer & star function code reference: [codepen](https://codepen.io/anon/pen/LojzVv?editors=0010)
+* Star function code reference: [codepen](https://codepen.io/anon/pen/LojzVv?editors=0010)
 * Move Counter code reference: [ryanwaite28](https://github.com/ryanwaite28/udacity-memory-game/blob/master/js/app.js "")
-* Reset Function code reference: [matthewcranford](https://matthewcranford.com/memory-game-walkthrough-part-8-putting-it-all-together/)
+* Game Timer and Reset Function code reference: [matthewcranford](https://matthewcranford.com/memory-game-walkthrough-part-8-putting-it-all-together/)
 * Thank you to [mikewales](https://www.youtube.com/watch?time_continue=935&v=x47oLiTpIVk) for the webinar on the game logic
 
 
