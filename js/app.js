@@ -1,6 +1,9 @@
+
 /*
  * Create a list that holds all of your cards
- */
+ */ 
+ 
+/* --------------------------- SHUFFLE FUNCTION --------------------------- */
 const cards = ['fa-diamond', 'fa-diamond',
   'fa-paper-plane-o', 'fa-paper-plane-o',
   'fa-anchor', 'fa-anchor',
@@ -11,6 +14,8 @@ const cards = ['fa-diamond', 'fa-diamond',
   'fa-bomb', 'fa-bomb'
 ];
 
+
+/* ---------------- HTML TEMPLATE TO GENERATE ALL THE CARDS --------------- */
 function createCard(card) {
   return `<li class="card" data-card="${card}"><i class="fa ${card}"></i></li>`; // template for how our <li> tags will be dynamically generated.
 }
@@ -22,6 +27,7 @@ function createCard(card) {
  *   - add each card's HTML to the page
  */
 
+/* --------------------------- SHUFFLE FUNCTION --------------------------- */
 // Shuffle function from http://stackoverflow.com/a/2450976
 function shuffle(array) {
     var currentIndex = array.length, temporaryValue, randomIndex;
@@ -37,7 +43,6 @@ function shuffle(array) {
     return array;
 }
 
-
 /*
  * set up the event listener for a card. If a card is clicked:
  *  - display the card's symbol (put this functionality in another function that you call from this one)
@@ -48,8 +53,57 @@ function shuffle(array) {
  *    + increment the move counter and display it on the page (put this functionality in another function that you call from this one)
  *    + if all cards have matched, display a message with the final score (put this functionality in another function that you call from this one)
  */ 
+ 
+ /* --------------------------- MAIN GAME LOGIC --------------------------- */
  const deck = document.querySelector('.deck');
  
+ /* ---------- GAME TIMER ---------- */
+ // Game timer code reference: https://codepen.io/anon/pen/LojzVv?editors=0010 
+ const totalGameClock = document.querySelector('.time-counter');
+ let h = 0, m = 0, s = 0;
+
+ function gameClock() {
+   s++;
+   if(s >= 60) {
+     s = 0;
+     m++;
+     if (m >= 60) {
+       m = 0;
+       h++;
+     }
+   }
+   
+   totalGameClock.textContent = `${h > 9 ? h : "0" + h} : ${m > 9 ? m : "0" + m} : ${s > 9 ? s : "0" + s}`;
+   
+   setTimeout(gameClock, 1000);
+ }
+ 
+ /* ---------- MOVE COUNTER ---------- */
+ // Move counter code reference: https://github.com/ryanwaite28/udacity-memory-game/blob/master/js/app.js
+ const numMoves = document.querySelector('.moves');
+ let moves = 0;
+
+ function gameCounter() {
+   moves++;
+   numMoves.innerText = moves;
+ }
+ 
+ /* ---------- STAR RATING ---------- */
+ // star rating code reference: https://codepen.io/anon/pen/LojzVv?editors=0010
+ const scoreBoard = document.querySelector('.stars');
+ const playerRating = document.getElementsByClassName('fa-star'), stars = " ";
+
+ function score() {
+   if(moves === 20) {
+     scoreBoard.firstElementChild.outerHTML = " ";
+   } if(moves === 30) {
+     scoreBoard.firstElementChild.outerHTML = " ";
+   } if (moves > 40) {
+     scoreBoard.innerHTML = `<li><i>No Stars</i></li>`;
+   }
+ }
+ 
+ /* ---------- START AND RESET GAME ---------- */
  function startGame() {
    const cardHTML = shuffle(cards).map(function(card) {
      return createCard(card);
@@ -57,11 +111,11 @@ function shuffle(array) {
    
    deck.innerHTML = cardHTML.join('');
  }
- 
-startGame();
 
-// reset Cards
-// reset cards code reference:https://matthewcranford.com/memory-game-walkthrough-part-8-putting-it-all-together/
+// reset game code reference: https://matthewcranford.com/memory-game-walkthrough-part-8-putting-it-all-together/
+const restartGame = document.querySelector('.fa-repeat');
+
+/* ---------- RESET CARDS ---------- */
 function resetCards() {
   const deck = document.querySelector('.deck');
   
@@ -73,91 +127,44 @@ function resetCards() {
   }
 }
 
-// Game Timer
-// game timer code reference: https://codepen.io/anon/pen/LojzVv?editors=0010 
-const totalGameClock = document.querySelector('.time-counter');
-let h = 0, m = 0, s = 0;
-
-function gameClock() {
-  s++;
-  if(s >= 60) {
-    s = 0;
-    m++;
-    if (m >= 60) {
-      m = 0;
-      h++;
-    }
-  }
-  
-  totalGameClock.textContent = `${h > 9 ? h : "0" + h} : ${m > 9 ? m : "0" + m} : ${s > 9 ? s : "0" + s}`;
-  
-  setTimeout(gameClock, 1000);
-}
-
-gameClock(); // timer for how log the game is taking 
-
-// Move Counter
-// move counter code reference: https://github.com/ryanwaite28/udacity-memory-game/blob/master/js/app.js
-const numMoves = document.querySelector('.moves');
-let moves = 0;
-
-function gameCounter() {
-  moves++;
-  numMoves.innerText = moves;
-}
-
-// star rating 
-// star rating code reference: https://codepen.io/anon/pen/LojzVv?editors=0010
-const scoreBoard = document.querySelector('.stars');
-const playerRating = document.getElementsByClassName('fa-star'), stars = " ";
-
-function score() {
-  if(moves === 20) {
-    scoreBoard.firstElementChild.outerHTML = " ";
-  } if(moves === 30) {
-    scoreBoard.firstElementChild.outerHTML = " ";
-  } if (moves > 40) {
-    scoreBoard.innerHTML = `<li><i>No Stars</i></li>`;
-  }
-}
-
-// Congratulation message window when the game has ended
-// congrats window code reference: https://codepen.io/anon/pen/LojzVv?editors=0010
-function congrats() {
-  if(document.querySelectorAll('.match').length === 16) {
-    window.alert('CONGRATULATIONS\n' + `You complete the game in: ${h > 9 ? h : "0" + h} : ${m > 9 ? m : "0" + m} : ${s > 9 ? s : "0" + s}` + ` with: ${moves} moves ` + 'and a star rating of: ' + playerRating.length + (playerRating.length === 1 ? " star" : " stars") + '\n Play again?');
-    resetGame();
-  }
-}
-
-// reset memory game:
-// reset code reference: https://matthewcranford.com/memory-game-walkthrough-part-8-putting-it-all-together/
-const restartGame = document.querySelector('.fa-repeat');
-
-function resetGame() {
+/* ---------- RESET TIMER ---------- */
+function resetTimer() {
   //reset the Timer
   h = 0;
   m = 0;
   s = 0;
   
   document.querySelector('.time-counter').textContent = `${h > 9 ? h : "0" + h} : ${m > 9 ? m : "0" + m} : ${s > 9 ? s : "0" + s}`;
-  
+}
+
+/* ---------- RESET STAR RATING ---------- */
+function resetStars() {
   //reset the star rating
   document.querySelector('.stars').innerHTML = `<li><i class="fa fa-star"></i></li>` + `<li><i class="fa fa-star"></i></li>` + `<li><i class="fa fa-star"></i></li>`;
-  
+}
+
+/* ---------- RESET MOVE COUNTER ---------- */
+function resetMoves() {
   // reset the move counter
   moves = 0;
   document.querySelector('.moves').innerHTML = moves;
-  
-  // reset deck and create new cards
-  //clearCards()
-  resetCards();
-  
 }
 
+/* ---------- CALL ALL RESET FUNCTIONS ---------- */
+function resetGame() {
+  // Calls all reset functions
+  resetTimer();
+  resetStars();
+  resetMoves();
+  resetCards();
+}
+
+/* --------------------------- FUNCTION CALLS --------------------------- */
+gameClock(); 
+startGame();
 document.querySelector('.restart').addEventListener('click', resetGame)
-  
-// Game logic for opening and matching cards
+
+/* ---------- LOGIC FOR OPENING, CLOSING AND MATCHING CARDS ---------- */
 const cardDeck = document.querySelectorAll('.card');
 let displayCard = [];
 
@@ -199,3 +206,13 @@ cardDeck.forEach(function(card) {
     }
   });
 });
+
+/* ---------- CONGRATULATIONS MESSAGE POP-UP ---------- */
+// congrats window code reference: https://codepen.io/anon/pen/LojzVv?editors=0010
+function congrats() {
+  if(document.querySelectorAll('.match').length === 16) {
+    window.alert('CONGRATULATIONS\n' + `You completed the game in: ${h > 9 ? h : "0" + h} : ${m > 9 ? m : "0" + m} : ${s > 9 ? s : "0" + s}` + ` with: ${moves} moves ` + 'and a star rating of: ' + playerRating.length + (playerRating.length === 1 ? " star" : " stars") + '\n Play again?');
+    resetGame();
+  }
+}
+  
