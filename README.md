@@ -9,7 +9,7 @@ Udacity Front - End Developer Nanodegree second project. The memory game is a br
 * [Technical](#technical)
 * [Credits](#credits)
 * [Contributing](#contributing)
-* [toolsused](#toolsused)
+* [Tools](#tool)
 
 ## Instructions
 
@@ -52,7 +52,7 @@ This repository is the starter code for _all_ Udacity students. Therefore, we mo
 
 For details, check out [CONTRIBUTING.md](CONTRIBUTING.md).
 
-## Tools Used
+## Tools
 
 This project was coded using ATOM text editor.
 
